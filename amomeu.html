@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amo Meu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fdf1f9;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        #heartButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #heartButton img {
+            width: 100px;
+            height: 100px;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('coracao-2-2.png') no-repeat center center;
+            background-size: cover;
+            animation: fall 5s infinite ease-in;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        #message {
+            display: none;
+            font-size: 28px;
+            color: #d1001d;
+            text-shadow: 2px 2px 5px #ff99cc;
+            position: absolute;
+            top: 30%;
+            z-index: 100;
+            animation: fadeIn 2s forwards, glow 1s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff99cc, 0 0 30px #ff99cc;
+            }
+            to {
+                text-shadow: 0 0 20px #ff3366, 0 0 30px #ff3366, 0 0 40px #ff3366;
+            }
+        }
+
+        #subMessage {
+            display: none;
+            font-size: 18px;
+            color: #b3001b;
+            position: absolute;
+            top: 40%;
+            z-index: 101;
+            animation: fadeIn 3s forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="heartButton">
+        <img src="coracao-2-2.png" alt="Heart">
+    </button>
+
+    <div id="message">EU TE AMO LUIZINHO</div>
+    <div id="subMessage">Ass: Jennifer Santos (Vulgo Amor da Sua Vida)</div>
+
+    <script>
+        const button = document.getElementById('heartButton');
+        const message = document.getElementById('message');
+        const subMessage = document.getElementById('subMessage');
+
+        button.addEventListener('click', () => {
+            message.style.display = 'block';
+            subMessage.style.display = 'block';
+            for (let i = 0; i < 50; i++) {
+                createHeart();
+            }
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+    </script>
+
+</body>
+</html>
